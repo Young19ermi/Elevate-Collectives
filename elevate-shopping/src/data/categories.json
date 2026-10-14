@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Apparel",
+    "slug": "apparel",
+    "children": [
+      {
+        "name": "Shirts",
+        "slug": "shirts",
+        "children": [
+          {
+            "name": "T-shirts",
+            "slug": "t-shirts"
+          },
+          {
+            "name": "Polo shirts",
+            "slug": "polo-shirts"
+          }
+        ]
+      },
+      
+      {
+        "name": "Headware",
+        "slug": "headware",
+        "children": [
+          {
+            "name": "Watches",
+            "slug": "watches"
+          },
+          {
+            "name": "Scarfs",
+            "slug": "scarfs"
+          },
+          {
+            "name": "Sunglasses",
+            "slug": "sunglasses"
+          }
+        ]
+      },
+      {
+        "name": "Mouse",
+        "slug": "mouse"
+      },
+      {
+        "name": "Sweatshirts",
+        "slug": "sweatshirts"
+      },
+      {
+        "name" : "Perfumes",
+        "slug": "perfume"
+      }
+
+    ]
+  },
+  {
+    "name": "Accessories",
+    "slug": "accessories",
+    "children": [
+      {
+        "name": "Belts",
+        "slug": "belts"
+      },
+      {
+        "name": "Watches",
+        "slug": "watches"
+      }
+    ]
+  }
+
+]

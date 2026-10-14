@@ -1,0 +1,95 @@
+
+[
+  {
+    "id": "1",
+    "slug": "roberto-gabbani-premium-t-shirt",
+    "name": "Roberto Gabbani Premium T-Shirt",
+    "category": "T-shirts",
+    "categoryPath": [
+      "apparel",
+      "shirts",
+      "t-shirts"
+    ],
+    "priceEtb": 2100,
+    "description": "Upgrade your everyday style with Roberto Gabbani-inspired premium menswear. Designed for a polished, versatile look that works for casual outings and smart-casual occasions. Available in selected sizes and colors. Price based on a local Roberto Gabbani shirt listing; confirm the exact T-shirt model before publishing.",
+    "color": "#1F2937",
+    "sale": false,
+    "stock": 20
+  },
+    {
+    "id": "2",
+    "slug": "artemios-bukkurat-rough-540-red-edp",
+    "name": "ARTEMIOS BUKKURAT ROUGH 540 RED EDP 100ML",
+    "category": "Perfumes",
+    "categoryPath": [
+      "perfume"
+    ],
+    "priceEtb": 3700,
+    "description": "A bold, charismatic fragrance with radiant opening notes, rich creamy nuances, and a warm amber-woody finish. Made for those who want a confident, memorable scent for evenings, celebrations, and special occasions. Eau de Parfum, 100 ml. Verify authenticity and stock before listing.",
+    "color": "#8B1538",
+    "sale": false,
+    "stock": 20
+  },
+
+
+  {
+    "id": "3",
+    "slug": "success-way-luxury-mens-day-date-watch",
+    "name": "Success Way Luxury Men's Day-Date Watch",
+    "category": "Watches",
+    "categoryPath": [
+      "watches"
+    ],
+    "priceEtb": 3500,
+    "description": "A sleek Success Way quartz wristwatch featuring a day-and-date display and a refined design for both formal and casual wear. Pair it with office attire, smart-casual outfits, or your favorite everyday look. Brand new. Confirm the exact model, materials, and water-resistance specifications with your supplier.",
+    "color": "#171717",
+    "sale": false,
+    "stock": 20
+  },
+
+  {
+    "id": "4",
+    "slug": "trendy-flat-top-oversized-square-sunglasses",
+    "name": "Trendy Flat-Top Oversized Square Sunglasses",
+    "category": "Sunglasses",
+    "categoryPath": [
+      "sunglasses"
+    ],
+    "priceEtb": 1500,
+    "description": "Make a statement with oversized, flat-top square sunglasses featuring a bold, contemporary silhouette. A versatile unisex accessory for everyday outfits, travel, and outdoor styling. Check the lens UV-protection rating with your supplier before advertising protective features.",
+    "color": "#111827",
+    "sale": true,
+    "stock": 20
+  },
+   
+  {
+    "id": "5",
+    "slug": "classic-mens-leather-style-belt",
+    "name": "Classic Men's Leather-Style Belt",
+    "category": "Belts",
+    "categoryPath": [
+      "belts"
+    ],
+    "priceEtb": 850,
+    "description": "Complete your look with a classic men's belt featuring a clean finish and versatile buckle design. Easy to style with jeans, chinos, and formal trousers. A practical everyday accessory for work, events, and casual wear. Confirm the actual belt material, available lengths, and buckle finish before publishing.",
+    "color": "#292524",
+    "sale": false,
+    "stock": 20
+  },
+     {
+    "id": "6",
+    "slug": "oversized-streetwear-t-shirt",
+    "name": "Essential Oversized Streetwear Tee",
+    "category": "Mouse",
+    "categoryPath": [
+      "apparel",
+      "shirts",
+      "mouse"
+    ],
+    "priceEtb": 1200,
+    "description": "Bring effortless streetwear style to your wardrobe with this relaxed-fit oversized T-shirt. Easy to pair with jeans, cargos, sneakers, and everyday essentials. A versatile staple for university, weekends, and casual outings.",
+    "color": "#D6D3D1",
+    "sale": false,
+    "stock": 20
+  }
+]

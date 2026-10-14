@@ -1,0 +1,26 @@
+{
+  "name": "Elevate Shopping",
+  "short_name": "Elevate",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBFBFB",
+  "theme_color": "#0A0C10",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
