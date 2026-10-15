@@ -11,13 +11,13 @@ export function StoreFooter() {
           </h2>
 
           <p className="mt-5 text-base leading-7 text-neutral-400 md:text-lg">
-            Paper is a minimal, production-ready storefront for Saleor — clean
-            as a blank page, built to ship.
+            Elevate is a minimal, mobile-first marketplace for Ethiopia — clean
+            as a fresh page, built to grow.
           </p>
 
           <p className="mt-5 text-base leading-7 text-neutral-400 md:text-lg">
-            Customize sections in code, connect your catalog, and keep checkout,
-            cart, and product pages battle-tested out of the box.
+            Shop local brands, pay with Telebirr or cash, and track delivery
+            from Addis to every region, simple and reliable..
           </p>
         </div>
 
@@ -46,8 +46,8 @@ export function StoreFooter() {
           ></a>
         </div>
 
-        <p className="mt-8 text-sm text-neutral-400">
-          Discover our collection.
+        <p className="mt-8 text-sm font-bold text-neutral-400">
+          Others deliver Orders. We deliver Value.
         </p>
 
         {/* Footer navigation */}

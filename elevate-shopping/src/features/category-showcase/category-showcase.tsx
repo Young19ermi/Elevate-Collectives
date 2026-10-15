@@ -54,12 +54,6 @@ export function CategoryShowcase() {
                   index === 1 ? "grayscale" : ""
                 }`}
               />
-              # HEY ChatGPT here i want to use grayscale but i want it only for
-              the second image and the first and third image should be colored.
-              How can i do that?To apply the grayscale effect only to the second
-              image while keeping the first and third images in color, you can
-              use conditional styling based on the index of the category in the
-              `categories` array. Here's how you can modify your code:
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-6 text-white">
                 <span className="text-lg font-semibold tracking-tight">

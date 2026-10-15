@@ -7,8 +7,15 @@ export function AddToCartButton({ productId }: { productId: string }) {
   const add = useCart((s) => s.add);
   const [done, setDone] = useState(false);
   return (
-    <Button className="w-full" onClick={() => { add(productId); setDone(true); setTimeout(() => setDone(false), 1200); }}>
-      {done ? "Added ✓" : "Add to cart"}
+    <Button
+      className="w-full"
+      onClick={() => {
+        add(productId);
+        setDone(true);
+        setTimeout(() => setDone(false), 1200);
+      }}
+    >
+      {done ? "Added " : "Add to cart"}
     </Button>
   );
 }
