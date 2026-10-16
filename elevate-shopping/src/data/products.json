@@ -14,7 +14,12 @@
     "description": "Upgrade your everyday style with Roberto Gabbani-inspired premium menswear. Designed for a polished, versatile look that works for casual outings and smart-casual occasions. Available in selected sizes and colors. Price based on a local Roberto Gabbani shirt listing; confirm the exact T-shirt model before publishing.",
     "color": "#1F2937",
     "sale": false,
-    "stock": 20
+    "stock": 20,
+    "images": [
+    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
+    "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
+    "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
+  ]
   },
     {
     "id": "2",

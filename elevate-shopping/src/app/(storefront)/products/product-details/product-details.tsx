@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import type { Product } from "@/features/products/schemas/product.schema";
-import { ProductImage } from "@/features/products/components/product-image";
+// import { ProductImage } from "@/features/products/components/product-image";
 import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 import { formatEtb } from "@/lib/utils/format";
 import { StoreFooter } from "@/features/store-footer/store-footer";
-
+import { ProductGallery } from "@/features/products/components/product-gallery";
 const SIZES = ["S", "M", "L", "XL", "XXL"];
 
 export function ProductDetails({ product }: { product: Product }) {
@@ -24,21 +24,21 @@ export function ProductDetails({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState(product.color);
-  const [activeImage, setActiveImage] = useState(0);
+  // const [activeImage, setActiveImage] = useState(0);
 
   // The current product schema has one image source.
   // Replace this array with product.gallery when your schema supports it.
-  const galleryImages = [0];
+  // const galleryImages = [0];
 
-  const previousImage = () => {
-    setActiveImage(
-      (current) => (current - 1 + galleryImages.length) % galleryImages.length,
-    );
-  };
+  // const previousImage = () => {
+  //   setActiveImage(
+  //     (current) => (current - 1 + galleryImages.length) % galleryImages.length,
+  //   );
+  // };
 
-  const nextImage = () => {
-    setActiveImage((current) => (current + 1) % galleryImages.length);
-  };
+  // const nextImage = () => {
+  //   setActiveImage((current) => (current + 1) % galleryImages.length);
+  // };
 
   return (
     <main className="min-h-screen bg-white text-neutral-950">
@@ -47,11 +47,10 @@ export function ProductDetails({ product }: { product: Product }) {
         <div className="min-w-0">
           <div className="relative">
             <div className="overflow-hidden rounded-xl bg-[#f2f2f2]">
-              <ProductImage
-                key={`${product.id}-${activeImage}`}
-                product={product}
-                className="!rounded-xl"
-              />
+              {/* Product image gallery */}
+              <section className="min-w-0">
+                <ProductGallery product={product} />
+              </section>
             </div>
 
             {product.sale && (
@@ -68,68 +67,6 @@ export function ProductDetails({ product }: { product: Product }) {
           </div>
 
           {/* Gallery controls */}
-          <div className="mt-4 flex items-center justify-between gap-3">
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={previousImage}
-                aria-label="Previous product image"
-                disabled={galleryImages.length <= 1}
-                className="flex size-10 items-center justify-center rounded-full border border-neutral-200 transition hover:bg-neutral-100 disabled:cursor-default disabled:opacity-40"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="size-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                >
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
-              </button>
-
-              <button
-                type="button"
-                onClick={nextImage}
-                aria-label="Next product image"
-                disabled={galleryImages.length <= 1}
-                className="flex size-10 items-center justify-center rounded-full border border-neutral-200 transition hover:bg-neutral-100 disabled:cursor-default disabled:opacity-40"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="size-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </button>
-            </div>
-
-            <div
-              className="flex items-center gap-1.5"
-              aria-label={`Image ${activeImage + 1} of ${galleryImages.length}`}
-            >
-              {galleryImages.map((image, index) => (
-                <button
-                  key={image}
-                  type="button"
-                  onClick={() => setActiveImage(index)}
-                  aria-label={`View image ${index + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${
-                    activeImage === index
-                      ? "w-5 bg-black"
-                      : "w-2 bg-neutral-300"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <span className="whitespace-nowrap text-sm text-neutral-700">
-              {activeImage + 1} / {galleryImages.length}
-            </span>
-          </div>
         </div>
 
         {/* Product information */}
