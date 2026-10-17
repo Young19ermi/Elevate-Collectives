@@ -16,7 +16,7 @@
     "sale": false,
     "stock": 20,
     "images": [
-    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
+    "https://plus.unsplash.com/premium_photo-1678218594563-9fe0d16c6838?q=80&w=1000&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
     "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
   ]
@@ -33,7 +33,11 @@
     "description": "A bold, charismatic fragrance with radiant opening notes, rich creamy nuances, and a warm amber-woody finish. Made for those who want a confident, memorable scent for evenings, celebrations, and special occasions. Eau de Parfum, 100 ml. Verify authenticity and stock before listing.",
     "color": "#8B1538",
     "sale": false,
-    "stock": 20
+    "stock": 20,
+    "images":[
+      "/perfume.jpg",
+      "/perfume_two.jpg"
+    ]
   },
 
 
@@ -95,6 +99,10 @@
     "description": "Bring effortless streetwear style to your wardrobe with this relaxed-fit oversized T-shirt. Easy to pair with jeans, cargos, sneakers, and everyday essentials. A versatile staple for university, weekends, and casual outings.",
     "color": "#D6D3D1",
     "sale": false,
-    "stock": 20
+    "stock": 20,
+    "images": [
+    "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
+      
+    ]
   }
 ]

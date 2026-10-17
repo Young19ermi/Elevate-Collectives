@@ -11,6 +11,16 @@ export const productSchema = z.object({
   color: z.string(), 
   sale: z.boolean(), 
   stock: z.number().int().nonnegative(),
-  images: z.array(z.string().url()).optional(),
+images: z
+  .array(
+    z.string().refine(
+      (value) =>
+        value.startsWith("/") ||
+        /^https?:\/\/.+/.test(value),
+      "Image must be a local path or a valid URL",
+    ),
+  )
+  .optional(),
+
 });
 export type Product = z.infer<typeof productSchema>;

@@ -105,7 +105,7 @@ export function ProductGallery({ product }: { product: Product }) {
                   onClick={() => setActiveIndex(index)}
                   aria-label={`View product image ${index + 1}`}
                   aria-pressed={isActive}
-                  className="flex h-6 items-center focus-visible:outline-none"
+                  className="flex ml-6 h-6 items-center focus-visible:outline-none "
                 >
                   <span
                     className={`block h-2 rounded-full transition-all duration-300 ${
@@ -120,7 +120,7 @@ export function ProductGallery({ product }: { product: Product }) {
           </div>
 
           <p
-            className="ml-auto mr-2.5 text-sm tabular-nums flex-col text-neutral-700"
+            className="ml-auto mr-2.5 text-sm tabular-nums flex-col text-neutral-700 border border-neutral-300 rounded-full px-2 py-1"
             aria-live="polite"
           >
             {activeIndex + 1} / {count}
