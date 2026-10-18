@@ -11,7 +11,8 @@ export const productSchema = z.object({
   color: z.string(), 
   sale: z.boolean(), 
   stock: z.number().int().nonnegative(),
-images: z
+  // size: z.string().optional(),
+  images: z
   .array(
     z.string().refine(
       (value) =>

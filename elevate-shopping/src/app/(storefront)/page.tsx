@@ -63,7 +63,7 @@ export default async function HomePage() {
         >
           Featured products
         </h2>
-        <ProductGrid products={products.slice(0, 8)} />
+        <ProductGrid products={products.slice(0, 6)} />
       </section>
 
       <CategoryShowcase />

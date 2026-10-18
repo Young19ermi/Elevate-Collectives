@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Product } from "@/features/products/schemas/product.schema";
 // import { ProductImage } from "@/features/products/components/product-image";
 import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
+
 import { formatEtb } from "@/lib/utils/format";
 import { StoreFooter } from "@/features/store-footer/store-footer";
 import { ProductGallery } from "@/features/products/components/product-gallery";
@@ -159,41 +160,11 @@ export function ProductDetails({ product }: { product: Product }) {
           )}
 
           {/* Quantity */}
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <label htmlFor="product-quantity" className="text-sm font-medium">
               Quantity
             </label>
-
-            <div className="mt-3 flex h-12 w-36 items-center justify-between rounded-lg border border-neutral-200">
-              <button
-                type="button"
-                aria-label="Decrease quantity"
-                disabled={quantity <= 1}
-                onClick={() =>
-                  setQuantity((current) => Math.max(1, current - 1))
-                }
-                className="flex h-full w-11 items-center justify-center text-xl disabled:opacity-30"
-              >
-                −
-              </button>
-
-              <output id="product-quantity" className="text-sm font-medium">
-                {quantity}
-              </output>
-
-              <button
-                type="button"
-                aria-label="Increase quantity"
-                disabled={quantity >= product.stock}
-                onClick={() =>
-                  setQuantity((current) => Math.min(product.stock, current + 1))
-                }
-                className="flex h-full w-11 items-center justify-center text-xl disabled:opacity-30"
-              >
-                +
-              </button>
-            </div>
-          </div>
+          </div> */}
 
           {/* Purchase area */}
           <div className="mt-8">
@@ -207,18 +178,31 @@ export function ProductDetails({ product }: { product: Product }) {
               </button>
             ) : (
               <div className="w-full">
-                <AddToCartButton productId={product.id} />
+                <AddToCartButton
+                  productId={product.id}
+                  size={isApparel ? selectedSize : undefined}
+                />
               </div>
             )}
 
             <div className="mt-5 grid grid-cols-2 gap-3 text-xs text-neutral-600">
               <div className="flex items-center justify-center gap-2">
-                <span aria-hidden="true">♧</span>
+                <img
+                  src="/cart.png"
+                  alt="secure checkout"
+                  width={18}
+                  height={18}
+                />
                 Secure checkout
               </div>
 
               <div className="flex items-center justify-center gap-2">
-                <span aria-hidden="true">⌂</span>
+                <img
+                  src="/express.png"
+                  alt="secure checkout"
+                  width={18}
+                  height={18}
+                />
                 Delivery across Ethiopia
               </div>
             </div>
@@ -233,15 +217,12 @@ export function ProductDetails({ product }: { product: Product }) {
             <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium">
               Description
               <img
-                src="/dropdown.svg"
+                src="/down-arrow.png"
                 alt="see description "
-                width={120}
-                height={120}
+                width={100}
+                height={100}
                 className="h-8 w-auto object-contain rotate-transition group-open:rotate-180"
               />
-              {/* <span className="text-lg text-neutral-500 transition-transform group-open:rotate-180">
-                ⌄
-              </span> */}
             </summary>
 
             <p className="pt-5 text-sm leading-7 text-neutral-600">
@@ -258,10 +239,10 @@ export function ProductDetails({ product }: { product: Product }) {
             <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium">
               Product Details
               <img
-                src="/dropdown.svg"
+                src="/down-arrow.png"
                 alt="see description "
-                width={120}
-                height={120}
+                width={100}
+                height={100}
                 className="h-8 w-auto object-contain rotate-transition group-open:rotate-180"
               />
             </summary>
@@ -300,10 +281,10 @@ export function ProductDetails({ product }: { product: Product }) {
             <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium">
               Shipping &amp; Returns
               <img
-                src="/dropdown.svg"
+                src="/down-arrow.png"
                 alt="see description "
-                width={120}
-                height={120}
+                width={100}
+                height={100}
                 className="h-8 w-auto object-contain rotate-transition group-open:rotate-180"
               />
             </summary>

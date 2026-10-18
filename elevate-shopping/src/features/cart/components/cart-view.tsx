@@ -99,11 +99,10 @@ export function CartView() {
   }
 
   const lines = items.flatMap((item) => {
-    const product = data.find((product) => product.id === item.productId);
+    const product = data.find((p) => p.id === item.productId);
 
-    return product ? [{ p: product, q: item.quantity }] : [];
+    return product ? [{ p: product, q: item.quantity, size: item.size }] : [];
   });
-
   const total = lines.reduce((sum, line) => sum + line.p.priceEtb * line.q, 0);
 
   if (!lines.length) {
@@ -139,8 +138,11 @@ export function CartView() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-8 md:grid-cols-[1fr_340px] md:px-8 md:py-12 lg:gap-16">
         <section>
           <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
-            {lines.map(({ p, q }) => (
-              <li key={p.id} className="flex gap-4 py-5 sm:gap-6">
+            {lines.map(({ p, q, size }) => (
+              <li
+                key={`${p.id}-${size ?? "no-size"}`}
+                className="flex gap-4 py-5 sm:gap-6"
+              >
                 <div
                   className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:size-32"
                   style={{ backgroundColor: p.color || "#f1f1f1" }}
@@ -161,17 +163,20 @@ export function CartView() {
                       {formatEtb(p.priceEtb * q)}
                     </p>
                   </div>
-
                   <p className="mt-2 text-sm text-neutral-500">
                     {formatEtb(p.priceEtb)} each
                   </p>
-
+                  {size && (
+                    <p className="mt-1 text-sm text-neutral-500">
+                      Size: {size}
+                    </p>
+                  )}
                   <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
                     <div className="flex h-9 items-center rounded-full border border-neutral-200 bg-white">
                       <button
                         type="button"
                         className="flex size-9 items-center justify-center disabled:opacity-30"
-                        onClick={() => dec(p.id)}
+                        onClick={() => dec(p.id, size)}
                         disabled={q <= 1}
                         aria-label={`Decrease ${p.name} quantity`}
                       >
@@ -183,7 +188,7 @@ export function CartView() {
                       <button
                         type="button"
                         className="flex size-9 items-center justify-center"
-                        onClick={() => add(p.id)}
+                        onClick={() => add(p.id, size)}
                         aria-label={`Increase ${p.name} quantity`}
                       >
                         +
@@ -192,7 +197,7 @@ export function CartView() {
 
                     <button
                       type="button"
-                      onClick={() => remove(p.id)}
+                      onClick={() => remove(p.id, size)}
                       className="text-xs text-neutral-500 underline underline-offset-4 transition-colors hover:text-black"
                     >
                       Remove

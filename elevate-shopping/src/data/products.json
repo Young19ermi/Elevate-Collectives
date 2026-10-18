@@ -39,22 +39,28 @@
       "/perfume_two.jpg"
     ]
   },
+{
+  "id": "3",
+  "slug": "classico-luxury-gold-chronograph-watch",
+  "name": "Classico Luxury Gold Chronograph Watch",
+  "category": "Watches",
+  "categoryPath": [
+    "watches"
+  ],
+  "priceEtb": 5500,
+  "description": "Make a statement with the Clasico Luxury Gold Chronograph Watch. Its polished gold-tone finish, stainless steel link bracelet, elegant champagne-toned dial with Roman numeral styling, multi-dial chronograph-inspired design, and date window create a sophisticated look. A versatile accessory for business outfits, special occasions, and everyday luxury.",
+  "color": "#DAA520",
+  "sale": false,
+  "stock": 1,
+  "images": [
+    "/classic.webp",
+    "/classic1.webp",
+    "/classic3.webp"
 
 
-  {
-    "id": "3",
-    "slug": "success-way-luxury-mens-day-date-watch",
-    "name": "Success Way Luxury Men's Day-Date Watch",
-    "category": "Watches",
-    "categoryPath": [
-      "watches"
-    ],
-    "priceEtb": 3500,
-    "description": "A sleek Success Way quartz wristwatch featuring a day-and-date display and a refined design for both formal and casual wear. Pair it with office attire, smart-casual outfits, or your favorite everyday look. Brand new. Confirm the exact model, materials, and water-resistance specifications with your supplier.",
-    "color": "#171717",
-    "sale": false,
-    "stock": 20
-  },
+  ]
+},
+
 
   {
     "id": "4",
@@ -68,7 +74,14 @@
     "description": "Make a statement with oversized, flat-top square sunglasses featuring a bold, contemporary silhouette. A versatile unisex accessory for everyday outfits, travel, and outdoor styling. Check the lens UV-protection rating with your supplier before advertising protective features.",
     "color": "#111827",
     "sale": true,
-    "stock": 20
+    "stock": 20,
+    "images":[
+      "/sunglassone.jpg",
+      "/sunglass.jpg",
+      "/sunglasstwo.jpg",
+      "/sunglassthree.jpg"
+
+    ]
   },
    
   {
@@ -81,28 +94,108 @@
     ],
     "priceEtb": 850,
     "description": "Complete your look with a classic men's belt featuring a clean finish and versatile buckle design. Easy to style with jeans, chinos, and formal trousers. A practical everyday accessory for work, events, and casual wear. Confirm the actual belt material, available lengths, and buckle finish before publishing.",
-    "color": "#292524",
+    "color": "#332521",
     "sale": false,
     "stock": 20
-  },
-     {
-    "id": "6",
-    "slug": "oversized-streetwear-t-shirt",
-    "name": "Essential Oversized Streetwear Tee",
-    "category": "Mouse",
-    "categoryPath": [
-      "apparel",
-      "shirts",
-      "mouse"
-    ],
-    "priceEtb": 1200,
-    "description": "Bring effortless streetwear style to your wardrobe with this relaxed-fit oversized T-shirt. Easy to pair with jeans, cargos, sneakers, and everyday essentials. A versatile staple for university, weekends, and casual outings.",
-    "color": "#D6D3D1",
-    "sale": false,
-    "stock": 20,
-    "images": [
-    "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
-      
-    ]
-  }
+  },{
+  "id": "11",
+  "slug": "logitech-g304-g305-lightspeed-wireless-mouse",
+  "name": "Logitech G304 LIGHTSPEED Wireless Mouse",
+  "category": "Mouse",
+  "categoryPath": [
+    "mouse"
+  ],
+  "priceEtb": 1800,
+  "description": "Experience responsive wireless gaming with the Logitech G304/G305 LIGHTSPEED Wireless Gaming Mouse. Featuring LIGHTSPEED wireless technology, the HERO optical sensor, six programmable buttons, and onboard memory, it delivers precise tracking and reliable performance in a lightweight design. Powered by a single AA battery, with battery life depending on usage and settings. A great choice for gaming, productivity, and everyday computer use.",
+  "color": "#263A59",
+  "sale": false,
+  "stock": 1,
+  "images": ["https://plus.unsplash.com/premium_photo-1671611822374-4719df5c89bb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+    "https://images.unsplash.com/photo-1760376789492-de70fab19d94?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+      ]
+},
+    
+  {
+  "id": "7",
+  "slug": "bestwin-6615-luxury-quartz-watch",
+  "name": "BESTWIN 6615 Luxury Quartz Watch",
+  "category": "Watches",
+  "categoryPath": [
+    "watches"
+  ],
+  "priceEtb": 2600,
+  "description": "Upgrade your wrist style with the BESTWIN 6615 Luxury Quartz Watch. It features a distinctive shield-shaped geometric case, polished gold-tone plating, a stainless steel link bracelet, and a blue dial with a sporty numerical gauge design. Powered by reliable quartz movement and rated 30M / 3BAR water resistance for everyday splashes. A standout accessory for casual wear, office outfits, or gifting.",
+  "color": "#C5A45D",
+  "sale": false,
+  "stock": 1,
+  "images": [
+    "/watchs1 (1).jpg",
+    "/watchs1.jpg"
+      ]
+},
+{
+  "id": "8",
+  "slug": "classico-luxury-gold-chronograph-watch",
+  "name": "Classico Luxury Gold Chronograph Watch",
+  "category": "Watches",
+  "categoryPath": [
+    "watches"
+  ],
+  "priceEtb": 5500,
+  "description": "Make a statement with the Clasico Luxury Gold Chronograph Watch. Its polished gold-tone finish, stainless steel link bracelet, elegant champagne-toned dial with Roman numeral styling, multi-dial chronograph-inspired design, and date window create a sophisticated look. A versatile accessory for business outfits, special occasions, and everyday luxury.",
+  
+  "color": "#8A6D1D",
+  "sale": false,
+  "stock": 1,
+  "images": [
+    "/classic.webp",
+    "/classic1.webp",
+    "/classic3.webp"
+
+
+  ]
+},
+{
+  "id": "9",
+  "slug": "afnan-9-series-discovery-kit",
+  "name": "Afnan 9 Series Discovery Kit",
+  "category": "Perfumes",
+  "categoryPath": [
+    "perfume"
+  ],
+  "priceEtb": 1200,
+  "description": "Discover the Afnan 9 Series with this five-piece miniature fragrance set. It includes five 2ml vials featuring 9AM, 9AM Femme, 9PM, 9PM Femme, and 9AM Dive. Explore a variety of fresh, floral, fruity, aquatic, citrus, and woody scent profiles in a compact set suitable for sampling, travel, or gifting.",
+    "color": "#8B1538",
+
+  "sale": false,
+  "stock": 1,
+  "images": [
+    "/images (2).jpeg",
+    "/73.webp",
+    "/images.jpeg"
+  ]
+},
+{
+  "id": "10",
+  "slug": "p9-p90-wireless-bluetooth-headphones",
+  "name": "P9/P90 Wireless Bluetooth Headphones",
+  "category": "Headphones",
+  "categoryPath": [
+    "electronics",
+    "headphones"
+  ],
+  "priceEtb": 1100,
+  "description": "Enjoy your music wirelessly with the P9/P90 Over-Ear Bluetooth Headphones. Designed with cushioned ear cups and an adjustable headband, these lightweight headphones offer a comfortable fit for everyday listening. Features include Bluetooth connectivity, an AUX input, TF/Micro-SD card support, FM radio, a built-in microphone for hands-free calls, and convenient controls for music playback and volume. The rechargeable battery provides approximately 10 hours of playback, depending on usage. A budget-friendly choice for music, calls, and everyday use.",
+  "color": "#222222",
+  "sale": false,
+  "stock": 1,
+  "images": [
+    "/p97.webp",
+    "/p94.webp",
+
+    "/p9.jpg",
+    "/p92.jpg"
+  ]
+}
+
 ]

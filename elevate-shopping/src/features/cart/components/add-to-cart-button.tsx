@@ -3,19 +3,28 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../store/cart.store";
 
-export function AddToCartButton({ productId }: { productId: string }) {
-  const add = useCart((s) => s.add);
+
+type AddToCartButtonProps = {
+  productId: string;
+  size?: string;
+};
+
+export function AddToCartButton({
+  productId,
+  size,
+}: AddToCartButtonProps) {
+  const add = useCart((state) => state.add);
   const [done, setDone] = useState(false);
+
+  const handleAddToCart = () => {
+    add(productId, size);
+    setDone(true);
+    setTimeout(() => setDone(false), 1200);
+  };
+
   return (
-    <Button
-      className="w-full"
-      onClick={() => {
-        add(productId);
-        setDone(true);
-        setTimeout(() => setDone(false), 1200);
-      }}
-    >
-      {done ? "Added " : "Add to cart"}
+    <Button className="w-full" onClick={handleAddToCart}>
+      {done ? "Added" : "Add to cart"}
     </Button>
   );
 }
