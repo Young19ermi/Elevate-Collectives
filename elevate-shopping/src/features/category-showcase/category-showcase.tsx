@@ -4,14 +4,14 @@ import Link from "next/link";
 const categories = [
   {
     name: "Perfumes",
-    slug: "perfumes",
+    slug: "perfume",
     image:
       "https://plus.unsplash.com/premium_photo-1679106770086-f4355693be1b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     alt: "Classic perfume bottles",
   },
   {
     name: "Mens Wear",
-    slug: "streetwear",
+    slug: "apparel",
     image:
       "https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     alt: "Modern mens wear clothing",
@@ -23,6 +23,13 @@ const categories = [
       "https://images.unsplash.com/photo-1663861536241-2b54d239286e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
     alt: "Minimal wristwatch",
   },
+  // {
+  //   name: "Accessories",
+  //   slug: "accessories",
+  //   image:
+  //     "https://images.unsplash.com/photo-1663861536241-2b54d239286e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+  //   alt: "Minimal wristwatch",
+  // },
 ];
 
 export function CategoryShowcase() {

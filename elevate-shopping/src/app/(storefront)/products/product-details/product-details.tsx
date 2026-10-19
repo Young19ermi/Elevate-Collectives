@@ -24,7 +24,9 @@ export function ProductDetails({ product }: { product: Product }) {
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
-  const [selectedColor, setSelectedColor] = useState(product.color);
+  const [selectedColor, setSelectedColor] = useState(
+    product.colors?.[0] ?? null,
+  );
   // const [activeImage, setActiveImage] = useState(0);
 
   // The current product schema has one image source.
@@ -95,31 +97,41 @@ export function ProductDetails({ product }: { product: Product }) {
           </div>
 
           {/* Color */}
-          <div className="mt-8">
-            <p className="text-sm">
-              <span className="font-medium">Color</span>
-              <span className="ml-2 text-neutral-600">
-                {selectedColor.toUpperCase()}
-              </span>
-            </p>
 
-            <button
-              type="button"
-              onClick={() => setSelectedColor(product.color)}
-              aria-label={`Select product color ${product.color}`}
-              aria-pressed={selectedColor === product.color}
-              className={`mt-3 flex size-12 items-center justify-center rounded-full border-2 ${
-                selectedColor === product.color
-                  ? "border-black"
-                  : "border-neutral-200"
-              }`}
-            >
-              <span
-                className="size-9 rounded-full border border-black/10"
-                style={{ backgroundColor: product.color }}
-              />
-            </button>
-          </div>
+          {/* Color selector */}
+          {product.colors && product.colors.length > 0 && (
+            <div className="mt-8">
+              <p className="text-sm">
+                <span className="font-medium">Color</span>
+                <span className="ml-2 text-neutral-600">
+                  {selectedColor?.name ?? "Select a color"}
+                </span>
+              </p>
+
+              <div className="mt-3 flex flex-wrap gap-3">
+                {product.colors.map((color) => (
+                  <button
+                    key={color.hex}
+                    type="button"
+                    onClick={() => setSelectedColor(color)}
+                    aria-label={`Select ${color.name}`}
+                    aria-pressed={selectedColor?.hex === color.hex}
+                    title={color.name}
+                    className={`flex size-12 items-center justify-center rounded-full border-2 transition ${
+                      selectedColor?.hex === color.hex
+                        ? "border-black"
+                        : "border-neutral-200"
+                    }`}
+                  >
+                    <span
+                      className="size-9 rounded-full border border-black/10"
+                      style={{ backgroundColor: color.hex }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Apparel size selector */}
           {isApparel && (
@@ -255,7 +267,7 @@ export function ProductDetails({ product }: { product: Product }) {
 
               <div className="flex items-center justify-between gap-4">
                 <dt className="text-neutral-500">Color</dt>
-                <dd>{selectedColor.toUpperCase()}</dd>
+                <dd>{selectedColor?.name ?? "Not specified"}</dd>
               </div>
 
               <div className="flex items-center justify-between gap-4">

@@ -5,36 +5,35 @@
     "slug": "roberto-gabbani-premium-t-shirt",
     "name": "Roberto Gabbani Premium T-Shirt",
     "category": "T-shirts",
-    "categoryPath": [
-      "apparel",
-      "shirts",
-      "t-shirts"
-    ],
+    "categoryPath": ["apparel", "shirts", "t-shirts"],
     "priceEtb": 2100,
     "description": "Upgrade your everyday style with Roberto Gabbani-inspired premium menswear. Designed for a polished, versatile look that works for casual outings and smart-casual occasions. Available in selected sizes and colors. Price based on a local Roberto Gabbani shirt listing; confirm the exact T-shirt model before publishing.",
-    "color": "#1F2937",
+    "colors": [
+      { "name": "Navy Blue", "hex": "#0c6e9c" }
+    ],
     "sale": false,
     "stock": 20,
     "images": [
-    "https://plus.unsplash.com/premium_photo-1678218594563-9fe0d16c6838?q=80&w=1000&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
-    "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
-  ]
+      "https://plus.unsplash.com/premium_photo-1678218594563-9fe0d16c6838?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=85",
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1000&q=85"
+    ]
   },
-    {
+  {
     "id": "2",
     "slug": "artemios-bukkurat-rough-540-red-edp",
     "name": "ARTEMIOS BUKKURAT ROUGH 540 RED EDP 100ML",
     "category": "Perfumes",
-    "categoryPath": [
-      "perfume"
-    ],
+    "categoryPath": ["perfume"],
     "priceEtb": 3700,
     "description": "A bold, charismatic fragrance with radiant opening notes, rich creamy nuances, and a warm amber-woody finish. Made for those who want a confident, memorable scent for evenings, celebrations, and special occasions. Eau de Parfum, 100 ml. Verify authenticity and stock before listing.",
-    "color": "#8B1538",
+    "colors":[ {
+      "name": "red",
+      "hex" : "#8B1538"
+    }],
     "sale": false,
     "stock": 20,
-    "images":[
+    "images": [
       "/perfume.jpg",
       "/perfume_two.jpg"
     ]
@@ -49,7 +48,10 @@
   ],
   "priceEtb": 5500,
   "description": "Make a statement with the Clasico Luxury Gold Chronograph Watch. Its polished gold-tone finish, stainless steel link bracelet, elegant champagne-toned dial with Roman numeral styling, multi-dial chronograph-inspired design, and date window create a sophisticated look. A versatile accessory for business outfits, special occasions, and everyday luxury.",
-  "color": "#DAA520",
+  "colors":[ {
+    "name": "gold",
+    "hex": "#DAA520"
+  }],
   "sale": false,
   "stock": 1,
   "images": [
@@ -67,135 +69,115 @@
     "slug": "trendy-flat-top-oversized-square-sunglasses",
     "name": "Trendy Flat-Top Oversized Square Sunglasses",
     "category": "Sunglasses",
-    "categoryPath": [
-      "sunglasses"
-    ],
+    "categoryPath": ["sunglasses"],
     "priceEtb": 1500,
     "description": "Make a statement with oversized, flat-top square sunglasses featuring a bold, contemporary silhouette. A versatile unisex accessory for everyday outfits, travel, and outdoor styling. Check the lens UV-protection rating with your supplier before advertising protective features.",
-    "color": "#111827",
+    "colors": [
+      { "name": "Black", "hex": "#111827" }
+    ],
     "sale": true,
     "stock": 20,
-    "images":[
+    "images": [
       "/sunglassone.jpg",
       "/sunglass.jpg",
       "/sunglasstwo.jpg",
       "/sunglassthree.jpg"
-
     ]
   },
-   
   {
     "id": "5",
     "slug": "classic-mens-leather-style-belt",
     "name": "Classic Men's Leather-Style Belt",
     "category": "Belts",
-    "categoryPath": [
-      "belts"
-    ],
+    "categoryPath": ["belts"],
     "priceEtb": 850,
     "description": "Complete your look with a classic men's belt featuring a clean finish and versatile buckle design. Easy to style with jeans, chinos, and formal trousers. A practical everyday accessory for work, events, and casual wear. Confirm the actual belt material, available lengths, and buckle finish before publishing.",
-    "color": "#332521",
+    "colors": [
+      { "name": "Dark Brown", "hex": "#332521" }
+    ],
     "sale": false,
     "stock": 20
-  },{
-  "id": "11",
-  "slug": "logitech-g304-g305-lightspeed-wireless-mouse",
-  "name": "Logitech G304 LIGHTSPEED Wireless Mouse",
-  "category": "Mouse",
-  "categoryPath": [
-    "mouse"
-  ],
-  "priceEtb": 1800,
-  "description": "Experience responsive wireless gaming with the Logitech G304/G305 LIGHTSPEED Wireless Gaming Mouse. Featuring LIGHTSPEED wireless technology, the HERO optical sensor, six programmable buttons, and onboard memory, it delivers precise tracking and reliable performance in a lightweight design. Powered by a single AA battery, with battery life depending on usage and settings. A great choice for gaming, productivity, and everyday computer use.",
-  "color": "#263A59",
-  "sale": false,
-  "stock": 1,
-  "images": ["https://plus.unsplash.com/premium_photo-1671611822374-4719df5c89bb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-    "https://images.unsplash.com/photo-1760376789492-de70fab19d94?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
-      ]
-},
-    
+  },
   {
-  "id": "7",
-  "slug": "bestwin-6615-luxury-quartz-watch",
-  "name": "BESTWIN 6615 Luxury Quartz Watch",
-  "category": "Watches",
-  "categoryPath": [
-    "watches"
-  ],
-  "priceEtb": 2600,
-  "description": "Upgrade your wrist style with the BESTWIN 6615 Luxury Quartz Watch. It features a distinctive shield-shaped geometric case, polished gold-tone plating, a stainless steel link bracelet, and a blue dial with a sporty numerical gauge design. Powered by reliable quartz movement and rated 30M / 3BAR water resistance for everyday splashes. A standout accessory for casual wear, office outfits, or gifting.",
-  "color": "#C5A45D",
-  "sale": false,
-  "stock": 1,
-  "images": [
-    "/watchs1 (1).jpg",
-    "/watchs1.jpg"
-      ]
-},
-{
-  "id": "8",
-  "slug": "classico-luxury-gold-chronograph-watch",
-  "name": "Classico Luxury Gold Chronograph Watch",
-  "category": "Watches",
-  "categoryPath": [
-    "watches"
-  ],
-  "priceEtb": 5500,
-  "description": "Make a statement with the Clasico Luxury Gold Chronograph Watch. Its polished gold-tone finish, stainless steel link bracelet, elegant champagne-toned dial with Roman numeral styling, multi-dial chronograph-inspired design, and date window create a sophisticated look. A versatile accessory for business outfits, special occasions, and everyday luxury.",
-  
-  "color": "#8A6D1D",
-  "sale": false,
-  "stock": 1,
-  "images": [
-    "/classic.webp",
-    "/classic1.webp",
-    "/classic3.webp"
-
-
-  ]
-},
-{
-  "id": "9",
-  "slug": "afnan-9-series-discovery-kit",
-  "name": "Afnan 9 Series Discovery Kit",
-  "category": "Perfumes",
-  "categoryPath": [
-    "perfume"
-  ],
-  "priceEtb": 1200,
-  "description": "Discover the Afnan 9 Series with this five-piece miniature fragrance set. It includes five 2ml vials featuring 9AM, 9AM Femme, 9PM, 9PM Femme, and 9AM Dive. Explore a variety of fresh, floral, fruity, aquatic, citrus, and woody scent profiles in a compact set suitable for sampling, travel, or gifting.",
-    "color": "#8B1538",
-
-  "sale": false,
-  "stock": 1,
-  "images": [
-    "/images (2).jpeg",
-    "/73.webp",
-    "/images.jpeg"
-  ]
-},
-{
-  "id": "10",
-  "slug": "p9-p90-wireless-bluetooth-headphones",
-  "name": "P9/P90 Wireless Bluetooth Headphones",
-  "category": "Headphones",
-  "categoryPath": [
-    "electronics",
-    "headphones"
-  ],
-  "priceEtb": 1100,
-  "description": "Enjoy your music wirelessly with the P9/P90 Over-Ear Bluetooth Headphones. Designed with cushioned ear cups and an adjustable headband, these lightweight headphones offer a comfortable fit for everyday listening. Features include Bluetooth connectivity, an AUX input, TF/Micro-SD card support, FM radio, a built-in microphone for hands-free calls, and convenient controls for music playback and volume. The rechargeable battery provides approximately 10 hours of playback, depending on usage. A budget-friendly choice for music, calls, and everyday use.",
-  "color": "#222222",
-  "sale": false,
-  "stock": 1,
-  "images": [
-    "/p97.webp",
-    "/p94.webp",
-
-    "/p9.jpg",
-    "/p92.jpg"
-  ]
-}
-
+    "id": "11",
+    "slug": "logitech-g304-g305-lightspeed-wireless-mouse",
+    "name": "Logitech G304 LIGHTSPEED Wireless Mouse",
+    "category": "Accessories",
+    "categoryPath": ["accessories"],
+    "priceEtb": 1800,
+    "description": "Experience responsive wireless gaming with the Logitech G304/G305 LIGHTSPEED Wireless Gaming Mouse. Featuring LIGHTSPEED wireless technology, the HERO optical sensor, six programmable buttons, and onboard memory, it delivers precise tracking and reliable performance in a lightweight design. Powered by a single AA battery, with battery life depending on usage and settings. A great choice for gaming, productivity, and everyday use.",
+    "colors": [
+      { "name": "Blue", "hex": "#263A59" }
+    ],
+    "sale": false,
+    "stock": 1,
+    "images": [
+      "https://plus.unsplash.com/premium_photo-1671611822374-4719df5c89bb?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      "https://images.unsplash.com/photo-1760376789492-de70fab19d94?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    ]
+  },
+  {
+    "id": "7",
+    "slug": "bestwin-6615-luxury-quartz-watch",
+    "name": "BESTWIN 6615 Luxury Quartz Watch",
+    "category": "Watches",
+    "categoryPath": ["watches"],
+    "priceEtb": 2600,
+    "description": "Upgrade your wrist style with the BESTWIN 6615 Luxury Quartz Watch. It features a distinctive shield-shaped geometric case, polished gold-tone plating, a stainless steel link bracelet, and a blue dial with a sporty numerical gauge design. Powered by reliable quartz movement and rated 30M / 3BAR water resistance for everyday splashes. A standout accessory for casual wear, office outfits, or gifting.",
+    "colors": [
+      { "name": "Gold and Blue", "hex": "#C5A45D" }
+    ],
+    "sale": false,
+    "stock": 1,
+    "images": [
+      "/watchs1 (1).jpg",
+      "/watchs1.jpg"
+    ]
+  },
+  {
+    "id": "9",
+    "slug": "afnan-9-series-discovery-kit",
+    "name": "Afnan 9 Series Discovery Kit",
+    "category": "Perfumes",
+    "categoryPath": ["perfume"],
+    "priceEtb": 1200,
+    "description": "Discover the Afnan 9 Series with this five-piece miniature fragrance set. It includes five 2ml vials featuring 9AM, 9AM Femme, 9PM, 9PM Femme, and 9AM Dive. Explore a variety of fresh, floral, fruity, aquatic, citrus, and woody scent profiles in a compact set suitable for sampling, travel, or gifting.",
+    "colors": [
+      { "name": "Burgundy", "hex": "#8B1538" },
+      { "name": "Black", "hex": "#171717" },
+      { "name": "Gold", "hex": "#C5A253" }
+    ],
+    "sale": false,
+    "stock": 1,
+    "images": [
+      "/images (2).jpeg",
+      "/73.webp",
+      "/images.jpeg"
+    ]
+  },
+  {
+    "id": "10",
+    "slug": "p9-p90-wireless-bluetooth-headphones",
+    "name": "P9/P90 Wireless Bluetooth Headphones",
+    "category": "Accessories",
+    "categoryPath": ["accessories"],
+    "priceEtb": 1100,
+    "description": "Enjoy your music wirelessly with the P9/P90 Over-Ear Bluetooth Headphones. Designed with cushioned ear cups and an adjustable headband, these lightweight headphones offer a comfortable fit for everyday listening. Features include Bluetooth connectivity, an AUX input, TF/Micro-SD card support, FM radio, a built-in microphone for hands-free calls, and convenient controls for music playback and volume. The rechargeable battery provides approximately 10 hours of playback, depending on usage. A budget-friendly choice for music, calls, and everyday use.",
+    "colors": [
+      { "name": "Black", "hex": "#1F2937" },
+      { "name": "Navy Blue", "hex": "#1E3A8A" },
+      { "name": "Red", "hex": "#DC2626" },
+      { "name": "Pink", "hex": "#F9A8D4" },
+      { "name": "Green", "hex": "#16A34A" },
+      { "name": "Beige", "hex": "#D6C2A1" }
+    ],
+    "sale": false,
+    "stock": 1,
+    "images": [
+      "/p97.webp",
+      "/p94.webp",
+      "/p9.jpg",
+      "/p92.jpg"
+    ]
+  }
 ]

@@ -145,7 +145,7 @@ export function CartView() {
               >
                 <div
                   className="flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:size-32"
-                  style={{ backgroundColor: p.color || "#f1f1f1" }}
+                  style={{ backgroundColor: p.colors?.[0]?.hex || "#f1f1f1" }}
                 >
                   <span className="text-xs font-medium text-white/80">
                     {p.category}

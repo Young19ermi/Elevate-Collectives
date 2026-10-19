@@ -3,15 +3,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../store/cart.store";
 
-
 type AddToCartButtonProps = {
   productId: string;
   size?: string;
+  color?: string;
 };
 
 export function AddToCartButton({
   productId,
   size,
+  color,
 }: AddToCartButtonProps) {
   const add = useCart((state) => state.add);
   const [done, setDone] = useState(false);

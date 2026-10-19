@@ -60,8 +60,16 @@
         "slug": "belts"
       },
       {
+        "name": "Mouse",
+        "slug": "mouse"
+      },
+      {
         "name": "Watches",
         "slug": "watches"
+      },
+      {
+        "name": "Electronics",
+        "slug": "electronics"
       }
     ]
   }
