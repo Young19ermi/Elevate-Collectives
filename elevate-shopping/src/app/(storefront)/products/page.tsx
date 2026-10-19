@@ -26,8 +26,9 @@ export default async function ProductsPage({
     "polo-shirts": "Polo Shirts",
     sunglasses: "Sunglasses",
     belts: "Belts",
-    mouse: "Mice",
+    mouse: "Mouse",
     sweatshirts: "Sweatshirts",
+    accessories: "Accessories",
   };
 
   const title = category
@@ -36,7 +37,6 @@ export default async function ProductsPage({
 
   return (
     <ListingPage
-    
       variant="plain"
       title={title}
       description={

@@ -66,12 +66,8 @@
       {
         "name": "Watches",
         "slug": "watches"
-      },
-      {
-        "name": "Electronics",
-        "slug": "electronics"
       }
-    ]
+      ]
   }
 
 ]
