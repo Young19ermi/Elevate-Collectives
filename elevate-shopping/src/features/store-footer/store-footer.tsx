@@ -101,13 +101,6 @@ export function StoreFooter() {
           </div>
         </div>
 
-        {/* Locale selector */}
-        <div className="mt-8">
-          <label htmlFor="store-locale" className="sr-only">
-            Language and currency
-          </label>
-        </div>
-
         <div className="mt-12 border-t border-neutral-800 pt-6">
           <p className="text-xs text-neutral-500">
             © {new Date().getFullYear()} Elevate Collectives. All rights

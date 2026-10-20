@@ -21,7 +21,7 @@ const benefits = [
 export function StoreBenefits() {
   return (
     <section className="w-full bg-neutral-50 text-black">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+      <div className="mx-auto max-w-8xl px-5 py-16 md:px-8 md:py-20">
         <div className="mb-12 text-left md:mb-16">
           {/* <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
             Designed to last
@@ -49,7 +49,7 @@ export function StoreBenefits() {
           </Link>
         </div>
 
-        <div className="w-full bg-neutral-200 max-w-7xl px-4 py-16 md:px-8 md:py-20">
+        <div className="max-w-full bg-neutral-10  px-4 py-16 md:px-8 md:py-20">
           <h2 className="mb-12 text-center text-2xl font-bold tracking-tight md:text-3xl">
             Why shop with us
           </h2>
@@ -57,9 +57,9 @@ export function StoreBenefits() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
             {benefits.map((benefit) => (
               <article key={benefit.title} className="text-center">
-                <h3 className="text-lg font-semibold">{benefit.title}</h3>
+                <h3 className="text-lg font-serif">{benefit.title}</h3>
 
-                <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-600 md:text-base">
+                <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-neutral-700 md:text-base">
                   {benefit.description}
                 </p>
               </article>
