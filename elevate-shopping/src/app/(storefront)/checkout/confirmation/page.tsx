@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import data from "@/data/products.json";
 import { formatEtb } from "@/lib/utils/format";
 import { useCart } from "@/features/cart/store/cart.store";
+import { Footer } from "@/components/layout/footer";
 type SavedOrder = {
   trackingCode: string;
   customer: {
@@ -101,11 +102,12 @@ export default function OrderConfirmationPage() {
     `Name: ${c.fullName}`,
     `Phone: ${c.phone}`,
   ].join("\n");
+  const telegramUrl = "https://t.me/Youngermi";
 
-  // Replace with your shop's actual Telegram username.
-  const telegramUrl = `https://t.me/Youngermi?text=${encodeURIComponent(
-    telegramMessage,
-  )}`;
+  // // Replace with your shop's actual Telegram username.
+  // const telegramUrl = `https://t.me/Youngermi?text=${encodeURIComponent(
+  //   telegramMessage,
+  // )}`;
 
   return (
     <main className="min-h-screen bg-[#ffffff] pb-8 text-[#211d19]">
@@ -251,13 +253,7 @@ export default function OrderConfirmationPage() {
             <p className="mt-2 text-[13px] leading-[1.7] text-[#211d19]">
               {address || "Address not provided"}
             </p>
-
-            {c.landmark && (
-              <p className="mt-2 text-[12px] leading-5 text-[#746b61]">
-                Landmark: {c.landmark}
-              </p>
-            )}
-
+            {/* 
             {c.mapsLink && (
               <a
                 href={c.mapsLink}
@@ -267,7 +263,7 @@ export default function OrderConfirmationPage() {
               >
                 View delivery location
               </a>
-            )}
+            )} */}
           </div>
 
           <div className="mt-6">
@@ -374,9 +370,25 @@ export default function OrderConfirmationPage() {
           Message us on Telegram
         </a>
 
-        <p className="px-4 pb-4 pt-4 text-center text-[10px] leading-5 text-[#746b61]">
-          Keep your tracking code for future order enquiries.
-        </p>
+        <a
+          href="/products"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-2 mt-6 flex min-h-[54px] items-center justify-center gap-3 bg-[#17130f] px-5 text-[12px] font-semibold tracking-[0.04em] text-white transition-colors hover:bg-[#168bc3] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#229ED9]"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className=" size-6 shrink-0 text-neutral-500"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m16 16 4 4" />
+          </svg>
+          Continue Shopping
+        </a>
       </div>
     </main>
   );

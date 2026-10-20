@@ -15,14 +15,15 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "resend": "^6.34.1",
     "zod": "latest",
     "zustand": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@tailwindcss/postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

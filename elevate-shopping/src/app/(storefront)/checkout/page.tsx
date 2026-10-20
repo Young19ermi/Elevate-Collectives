@@ -146,6 +146,7 @@ export default function Page() {
   const [mounted, setMounted] = useState(false);
   const [form, setForm] = useState<CheckoutForm>(initialForm);
   const [notice, setNotice] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -173,26 +174,56 @@ export default function Page() {
 
   const itemCount = lines.reduce((sum, line) => sum + line.quantity, 0);
 
-function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-  const trackingCode =
-    `GW-${new Date().toISOString().slice(2, 10).replaceAll("-", "")}-` +
-    crypto.randomUUID().replaceAll("-", "").slice(0, 6).toUpperCase();
+    if (submitting) return;
 
-  const order = {
-    trackingCode,
-    customer: form,
-    createdAt: new Date().toISOString(),
-  };
+    setSubmitting(true);
+    setNotice("");
 
-  sessionStorage.setItem(
-    "elevate-order-confirmation",
-    JSON.stringify(order),
-  );
+    try {
+      const response = await fetch("/api/orders/confirmation-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: form,
+          items: items.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            size: item.size,
+          })),
+        }),
+      });
 
-  router.push("/checkout/confirmation");
-}
+      const result = await response.json();
+
+      if (!response.ok || !result.success || !result.trackingCode) {
+        throw new Error(
+          result.error || "We couldn't submit your order. Please try again.",
+        );
+      }
+
+      sessionStorage.setItem(
+        "elevate-order-confirmation",
+        JSON.stringify({
+          trackingCode: result.trackingCode,
+          customer: form,
+          createdAt: new Date().toISOString(),
+        }),
+      );
+
+      router.push("/checkout/confirmation");
+    } catch (error) {
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   if (!mounted) {
     return (
@@ -375,12 +406,14 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
                   {notice}
                 </p>
               )}
-
               <button
                 type="submit"
-                className="flex min-h-[52px] w-full items-center justify-center bg-[#17130f] px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#393027] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9b7741]"
+                disabled={submitting}
+                className="flex min-h-[52px] w-full items-center justify-center bg-[#17130f] px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#393027] disabled:cursor-wait disabled:opacity-60"
               >
-                Submit order details · {formatEtb(subtotal)}
+                {submitting
+                  ? "Sending confirmation..."
+                  : `Submit order details · ${formatEtb(subtotal)}`}
               </button>
 
               <p className="text-center text-[11px] leading-5 text-[#746b61]">
