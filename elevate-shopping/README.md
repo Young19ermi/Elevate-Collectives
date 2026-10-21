@@ -52,28 +52,6 @@ _Available products and categories may change as the catalog evolves._
 
 > **Payment note:** Payment provider integration and live payment processing depend on the project's current implementation and configuration. The presence of a provider in the tech stack does not mean every payment method is active.
 
-## 📸 Preview
-
-Replace the image paths below with screenshots or images from your `public/` folder.
-
-\<p align="center">
-&#x20; \<img src="public/elevate-homepage.png" alt="Elevate Collectives homepage" width="100%" />
-&#x20; \<br />
-&#x20; \<em>The storefront — discover the collection.\</em>
-\</p>
-
-\<p align="center">
-&#x20; \<img src="public/elevate-product.png" alt="Elevate Collectives product details" width="80%" />
-&#x20; \<br />
-&#x20; \<em>Product details — a focused shopping experience.\</em>
-\</p>
-
-\<p align="center">
-&#x20; \<img src="public/elevate-checkout.png" alt="Elevate Collectives checkout" width="80%" />
-&#x20; \<br />
-&#x20; \<em>Checkout — review your order and provide delivery information.\</em>
-\</p>
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -216,11 +194,3 @@ Suggestions, bug reports, and improvements are welcome.
 
 - Telegram: [@Youngermi](https://t.me/Youngermi)
 - GitHub: [Young19ermi](https://github.com/Young19ermi)
-
----
-
-\<p align="center">
-&#x20; \<strong>Elevate Collectives\</strong>
-&#x20; \<br />
-&#x20; \<em>Others deliver orders. We deliver value.\</em>
-\</p>
