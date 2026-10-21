@@ -2,23 +2,6 @@
 
 ### Thoughtfully Selected. Designed to Deliver Value.
 
-\<p align="center">
-&#x20; \<img src="public/og.png" alt="Elevate Collectives — Premium Shopping Experience" width="100%" />
-\</p>
-
-\<p align="center">
-&#x20; A modern, responsive e-commerce experience built to make online shopping in Ethiopia feel effortless, elegant, and reliable.
-\</p>
-
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/Next.js-Black?style=for-the-badge&logo=next.js&logoColor=white](https://img.shields.io/badge/Next.js-Black?style=for-the-badge&logo=next.js&logoColor=white)" alt="Next.js" />
-&#x20; \<img src="[https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)" alt="React" />
-&#x20; \<img src="[https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)" alt="TypeScript" />
-&#x20; \<img src="[https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)" alt="Tailwind CSS" />
-\</p>
-
----
-
 ## ✦ About the Project
 
 **Elevate Collectives** is a modern online shopping platform focused on bringing carefully selected fashion, accessories, fragrances, and lifestyle products to customers in Ethiopia.
