@@ -4,8 +4,6 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import data from "@/data/products.json";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function escapeHtml(value: unknown) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => {
     const entities: Record<string, string> = {
@@ -15,6 +13,7 @@ function escapeHtml(value: unknown) {
       '"': "&quot;",
       "'": "&#39;",
     };
+
     return entities[char];
   });
 }
@@ -31,40 +30,53 @@ type RequestItem = {
   size?: string;
 };
 
+type Customer = {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  country?: string;
+  region?: string;
+  city?: string;
+  subCity?: string;
+  woreda?: string;
+  kebele?: string;
+  area?: string;
+  address?: string;
+  landmark?: string;
+  mapsLink?: string;
+  instructions?: string;
+};
+
 export async function POST(request: Request) {
   try {
-    if (!process.env.RESEND_API_KEY || !process.env.ORDERS_FROM_EMAIL) {
+    // Send order notifications to the store owner, not the customer.
+    const apiKey = process.env.RESEND_API_KEY;
+    const ownerEmail = process.env.ORDERS_TO_EMAIL?.trim();
+    console.log(apiKey,ownerEmail)
+    if (!apiKey || !ownerEmail) {
+      console.error(
+
+        "Order email is not configured. Check RESEND_API_KEY and ORDERS_TO_EMAIL.",
+      );
+    console.log(apiKey,ownerEmail)
+
+
       return NextResponse.json(
-        { error: "Email service is not configured." },
+        { error: "Order notification email is not configured." },
         { status: 500 },
       );
     }
 
     const body = await request.json();
-    const customer = body.customer as {
-      fullName?: string;
-      email?: string;
-      phone?: string;
-      country?: string;
-      region?: string;
-      city?: string;
-      subCity?: string;
-      woreda?: string;
-      kebele?: string;
-      area?: string;
-      address?: string;
-      landmark?: string;
-      mapsLink?: string;
-      instructions?: string;
-    };
+    const customer = body?.customer as Customer | undefined;
+    const items = body?.items as RequestItem[];
 
-    const items = body.items as RequestItem[];
-
+    // Validate the submitted customer and order details.
     if (
       typeof customer?.fullName !== "string" ||
       !customer.fullName.trim() ||
       typeof customer.email !== "string" ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email) ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email.trim()) ||
       typeof customer.phone !== "string" ||
       !customer.phone.trim() ||
       !Array.isArray(items) ||
@@ -77,7 +89,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const lines = [];
+    const lines: {
+      product: (typeof data)[number];
+      quantity: number;
+      size?: string;
+    }[] = [];
 
     for (const item of items) {
       if (
@@ -85,7 +101,8 @@ export async function POST(request: Request) {
         typeof item.productId !== "string" ||
         !Number.isSafeInteger(item.quantity) ||
         item.quantity < 1 ||
-        item.quantity > 100
+        item.quantity > 100 ||
+        (item.size !== undefined && typeof item.size !== "string")
       ) {
         return NextResponse.json(
           { error: "Invalid order item." },
@@ -93,6 +110,7 @@ export async function POST(request: Request) {
         );
       }
 
+      // Look up products and prices on the server.
       const product = data.find((p) => p.id === item.productId);
 
       if (!product) {
@@ -109,9 +127,8 @@ export async function POST(request: Request) {
       });
     }
 
-    // UUID-based identifier; the full UUID makes accidental collisions
-    // extraordinarily unlikely. Persist it with a unique database constraint
-    // when order storage is added.
+    // UUID makes accidental tracking-code collisions extraordinarily unlikely.
+    // Save orders in a database with a unique constraint when persistence is added.
     const trackingCode = `GW-${randomUUID().toUpperCase()}`;
 
     const subtotal = lines.reduce(
@@ -119,18 +136,24 @@ export async function POST(request: Request) {
       0,
     );
 
-    const customerName = escapeHtml(customer.fullName.trim());
+    const customerName = customer.fullName.trim();
     const customerEmail = customer.email.trim();
-    const customerPhone = escapeHtml(customer.phone.trim());
+    const customerPhone = customer.phone.trim();
 
     const itemRows = lines
       .map(
         ({ product, quantity, size }) => `
           <tr>
             <td style="padding:12px 0;border-bottom:1px solid #e8dfd1;font-size:13px;color:#30271f;">
-              ${escapeHtml(product.name)}
-              ${size ? `<div style="font-size:11px;color:#8b7c6b;margin-top:4px;">Size: ${escapeHtml(size)}</div>` : ""}
-              <div style="font-size:11px;color:#8b7c6b;margin-top:4px;">Qty: ${quantity}</div>
+              <strong>${escapeHtml(product.name)}</strong>
+              ${
+                size
+                  ? `<div style="font-size:11px;color:#8b7c6b;margin-top:4px;">Size: ${escapeHtml(size)}</div>`
+                  : ""
+              }
+              <div style="font-size:11px;color:#8b7c6b;margin-top:4px;">
+                Quantity: ${quantity}
+              </div>
             </td>
             <td align="right" style="padding:12px 0;border-bottom:1px solid #e8dfd1;font-size:13px;white-space:nowrap;color:#30271f;">
               ${money(product.priceEtb * quantity)}
@@ -150,10 +173,11 @@ export async function POST(request: Request) {
       customer.region,
       customer.country,
     ]
-      .filter(Boolean)
+      .filter((part) => typeof part === "string" && part.trim())
       .map(escapeHtml)
       .join(", ");
 
+    // Only display a map link when it matches a supported HTTPS maps URL.
     const mapsLink =
       typeof customer.mapsLink === "string" &&
       /^https:\/\/(www\.)?(google\.[a-z.]+\/maps|maps\.app\.goo\.gl\/)/i.test(
@@ -162,45 +186,67 @@ export async function POST(request: Request) {
         ? customer.mapsLink
         : "";
 
+    const safeCustomerName = escapeHtml(customerName);
+    const safeCustomerEmail = escapeHtml(customerEmail);
+    const safeCustomerPhone = escapeHtml(customerPhone);
+    const storePublicUrl = process.env.STORE_PUBLIC_URL?.replace(/\/+$/, "");
+    const brandImageUrl = storePublicUrl
+      ? `/og.png`
+      : "";
+  
+    // This email is for the store owner, not the customer.
     const html = `
       <div style="margin:0;background:#f7f1e7;padding:32px 12px;font-family:Arial,Helvetica,sans-serif;color:#30271f;">
-        <div style="max-width:520px;margin:0 auto;background:#fffdf9;padding:32px 28px;">
-          <div style="text-align:center;padding-bottom:25px;border-bottom:1px solid #eee4d5;">
+        <div style="max-width:560px;margin:0 auto;background:#fffdf9;padding:32px 28px;">
+
+          <div style="text-align:center;padding-bottom:24px;border-bottom:1px solid #eee4d5;">
+          ${brandImageUrl}
             <div style="font-family:Georgia,serif;font-size:23px;letter-spacing:1px;color:#6b4b2a;">
               Elevate Collectives
             </div>
+            
+            
             <div style="font-size:9px;letter-spacing:4px;color:#a88454;margin-top:8px;">
-              THOUGHTFULLY SELECTED
+              NEW ORDER NOTIFICATION
             </div>
           </div>
 
           <div style="padding-top:28px;">
-            <h1 style="font-family:Georgia,serif;font-size:27px;font-weight:normal;line-height:1.3;margin:0 0 16px;color:#30271f;">
-              Thank you, ${escapeHtml(customer.fullName.trim().split(/\s+/)[0])}.
+            <h1 style="font-family:Georgia,serif;font-size:27px;font-weight:normal;line-height:1.3;margin:0 0 14px;">
+              A new order just came in.
             </h1>
 
-            <p style="font-size:13px;line-height:1.8;color:#76695a;margin:0 0 20px;">
-              Your order has been received. Keep the tracking code below for future enquiries.
-              Our team will contact you at <strong>${customerPhone}</strong> to confirm your delivery and payment arrangements.
+            <p style="font-size:13px;line-height:1.8;color:#76695a;margin:0 0 22px;">
+              A customer has submitted an order through your Elevate Shopping website.
+              Review the details below and contact the customer to confirm delivery and payment.
             </p>
 
             <div style="border:1px solid #d9bd88;background:#f7efdf;text-align:center;padding:18px 10px;margin:22px 0;">
               <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8b6a38;margin-bottom:9px;">
-                Your tracking code
+                Order tracking code
               </div>
               <div style="font-family:Georgia,serif;font-size:19px;letter-spacing:1px;color:#30271f;overflow-wrap:anywhere;">
                 ${trackingCode}
               </div>
             </div>
 
-            <div style="text-align:center;margin:24px 0 30px;">
-              <a href="https://t.me/Youngermi"
-                 style="display:inline-block;background:#211a14;color:#ffffff;text-decoration:none;padding:15px 24px;font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;">
-                TRACK YOUR ORDER
+            <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:normal;margin:28px 0 12px;">
+              Customer details
+            </h2>
+
+            <div style="padding:18px;background:#f8f3eb;font-size:12px;line-height:2;color:#76695a;">
+              <strong style="color:#30271f;">Name:</strong> ${safeCustomerName}<br/>
+              <strong style="color:#30271f;">Email:</strong>
+              <a href="mailto:${escapeHtml(customerEmail)}" style="color:#79582e;">
+                ${safeCustomerEmail}
+              </a><br/>
+              <strong style="color:#30271f;">Phone:</strong>
+              <a href="tel:${escapeHtml(customerPhone)}" style="color:#79582e;">
+                ${safeCustomerPhone}
               </a>
             </div>
 
-            <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:normal;margin:0 0 8px;">
+            <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:normal;margin:28px 0 8px;">
               Order summary
             </h2>
 
@@ -211,42 +257,53 @@ export async function POST(request: Request) {
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top:15px;border-collapse:collapse;">
               <tr>
                 <td style="padding:7px 0;font-size:12px;color:#76695a;">Subtotal</td>
-                <td align="right" style="padding:7px 0;font-size:12px;">${money(subtotal)}</td>
+                <td align="right" style="padding:7px 0;font-size:12px;">
+                  ${money(subtotal)}
+                </td>
               </tr>
               <tr>
                 <td style="padding:7px 0;font-size:12px;color:#76695a;">Delivery fee</td>
-                <td align="right" style="padding:7px 0;font-size:11px;color:#76695a;">Confirmed by our team</td>
+                <td align="right" style="padding:7px 0;font-size:11px;color:#76695a;">
+                  To be confirmed
+                </td>
               </tr>
               <tr>
-                <td style="padding:15px 0;border-top:1px solid #d9cdbb;font-family:Georgia,serif;font-size:17px;">Total</td>
-                <td align="right" style="padding:15px 0;border-top:1px solid #d9cdbb;font-size:15px;font-weight:bold;">${money(subtotal)}</td>
+                <td style="padding:15px 0;border-top:1px solid #d9cdbb;font-family:Georgia,serif;font-size:17px;">
+                  Subtotal before delivery
+                </td>
+                <td align="right" style="padding:15px 0;border-top:1px solid #d9cdbb;font-size:15px;font-weight:bold;">
+                  ${money(subtotal)}
+                </td>
               </tr>
             </table>
 
-            <div style="margin-top:18px;padding:20px;background:#f8f3eb;">
-              <h2 style="font-family:Georgia,serif;font-size:18px;font-weight:normal;margin:0 0 12px;">
-                Delivery details
-              </h2>
-              <p style="font-size:12px;line-height:1.8;margin:0;color:#76695a;">
-                <strong style="color:#30271f;">${customerName}</strong><br/>
-                ${address || "Address not provided"}<br/>
-                ${customerPhone}
-                ${customer.landmark ? `<br/>Landmark: ${escapeHtml(customer.landmark)}` : ""}
-              </p>
+            <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:normal;margin:28px 0 12px;">
+              Delivery details
+            </h2>
+
+            <div style="padding:18px;background:#f8f3eb;font-size:12px;line-height:1.9;color:#76695a;">
+              <strong style="color:#30271f;">Address</strong><br/>
+              ${address || "No delivery address provided."}
               ${
-                mapsLink
-                  ? `<p style="margin:14px 0 0;"><a href="${escapeHtml(mapsLink)}" style="font-size:12px;color:#79582e;">View delivery location</a></p>`
+                customer.landmark
+                  ? `<br/><strong style="color:#30271f;">Landmark:</strong> ${escapeHtml(customer.landmark)}`
                   : ""
               }
               ${
                 customer.instructions
-                  ? `<p style="font-size:12px;line-height:1.7;color:#76695a;margin:12px 0 0;">Delivery instructions: ${escapeHtml(customer.instructions)}</p>`
+                  ? `<br/><strong style="color:#30271f;">Instructions:</strong> ${escapeHtml(customer.instructions)}`
+                  : ""
+              }
+              ${
+                mapsLink
+                  ? `<p style="margin:14px 0 0;"><a href="${escapeHtml(mapsLink)}" style="color:#79582e;">Open delivery location in Maps</a></p>`
                   : ""
               }
             </div>
 
             <p style="font-size:12px;line-height:1.8;color:#76695a;margin:24px 0 0;">
-              Your order is currently pending confirmation. We will contact you before dispatch to confirm the delivery fee and payment arrangements.
+              <strong>Next step:</strong> Contact the customer to confirm the delivery fee,
+              payment arrangements, product availability, and dispatch details.
             </p>
           </div>
 
@@ -255,37 +312,61 @@ export async function POST(request: Request) {
               Elevate Collectives
             </p>
             <p style="font-size:10px;line-height:1.8;color:#a09586;margin:0;">
-              Others deliver orders. We deliver value.<br/>
-              Need help? Message us on
-              <a href="https://t.me/Youngermi" style="color:#79582e;">Telegram</a>.
+              Others deliver orders. We deliver value.
             </p>
           </div>
+
         </div>
       </div>
     `;
 
-    const result = await resend.emails.send({
-      from: process.env.ORDERS_FROM_EMAIL,
-      to: customerEmail,
-      subject: `Order received — your tracking code is ${trackingCode}`,
+    const text = [
+      "NEW ORDER — ELEVATE COLLECTIVES",
+      "",
+      `Tracking code: ${trackingCode}`,
+      "",
+      "CUSTOMER DETAILS",
+      `Name: ${customerName}`,
+      `Email: ${customerEmail}`,
+      `Phone: ${customerPhone}`,
+      "",
+      "ORDER ITEMS",
+      ...lines.map(
+        ({ product, quantity, size }) =>
+          `${product.name}${size ? ` (Size: ${size})` : ""} — Qty: ${quantity} — ${money(product.priceEtb * quantity)}`,
+      ),
+      "",
+      `Subtotal before delivery: ${money(subtotal)}`,
+      "Delivery fee: To be confirmed",
+      "",
+      "DELIVERY DETAILS",
+      `Address: ${address || "No delivery address provided."}`,
+      ...(customer.landmark ? [`Landmark: ${customer.landmark}`] : []),
+      ...(customer.instructions
+        ? [`Delivery instructions: ${customer.instructions}`]
+        : []),
+      ...(mapsLink ? [`Maps: ${mapsLink}`] : []),
+      "",
+      "NEXT STEP",
+      "Contact the customer to confirm the delivery fee, payment arrangements, product availability, and dispatch details.",
+    ].join("\n");
+
+    // Use Resend's testing sender. The recipient must be your Resend account email.
+    const resend = new Resend(apiKey);
+
+    const { data: emailData, error } = await resend.emails.send({
+      from: "Elevate Collectives <onboarding@resend.dev>",
+      to: ownerEmail,
+      subject: `New order — ${customerName} — ${trackingCode}`,
       html,
-      text: [
-        `Thank you, ${customer.fullName}.`,
-        `Your order has been received.`,
-        `Tracking code: ${trackingCode}`,
-        `Phone: ${customer.phone}`,
-        `Delivery address: ${address}`,
-        `Order subtotal: ${money(subtotal)}`,
-        "Delivery fee: Confirmed by our team.",
-        "Your order is pending confirmation.",
-        "Contact us on Telegram: https://t.me/Youngermi",
-      ].join("\n\n"),
+      text,
     });
 
-    if (result.error) {
-      console.error("Resend email error:", result.error);
+    if (error) {
+      console.error("Resend order notification error:", error);
+
       return NextResponse.json(
-        { error: "We couldn't send the confirmation email. Please try again." },
+        { error: "We couldn't notify the store about this order." },
         { status: 502 },
       );
     }
@@ -293,12 +374,13 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       trackingCode,
-      emailId: result.data?.id,
+      emailId: emailData?.id,
     });
   } catch (error) {
-    console.error("Order confirmation error:", error);
+    console.error("Order submission error:", error);
+
     return NextResponse.json(
-      { error: "An unexpected error occurred while sending your confirmation." },
+      { error: "An unexpected error occurred while submitting your order." },
       { status: 500 },
     );
   }

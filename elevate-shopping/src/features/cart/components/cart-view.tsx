@@ -117,9 +117,9 @@ export function CartView() {
       <header className="border-b border-neutral-200">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 md:px-8">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 className="font-serif text-[23px] font-normal tracking-[-0.035em]">
               Your Bag
-            </h1>
+            </h2>
             <p className="mt-1 text-sm text-neutral-500">
               {itemCount} {itemCount === 1 ? "item" : "items"} in your bag
             </p>

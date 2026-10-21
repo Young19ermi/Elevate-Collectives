@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CartBadge } from "@/features/cart/components/cart-badge";
 import { categoryTree } from "@/features/products/api/get-categories";
 import { Logo } from "./logo";
+import { TransactionBadge } from "@/components/TransactionBadge";
 import { MobileMenu } from "./mobile-menu";
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -22,18 +23,12 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/login" aria-label="Account" className="p-2">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.7"
-            >
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
-            </svg>
+          <Link
+            href="/transactions"
+            aria-label="Transaction History"
+            className="p-2"
+          >
+            <TransactionBadge />
           </Link>
           <CartBadge />
           <button

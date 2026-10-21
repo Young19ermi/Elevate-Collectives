@@ -36,7 +36,8 @@ export function CategoryShowcase() {
   return (
     <section className="bg-[#efefef] px-4 py-12 md:py-16">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-9 text-[25px] font-semibold tracking-tight text-black md:mb-10 md:text-3xl">
+        <h2 className="font-serif mb-7 text-[28px] font-normal tracking-[-0.035em]">
+        
           Shop by category
         </h2>
 

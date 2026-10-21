@@ -26,10 +26,8 @@ export function StoreBenefits() {
           {/* <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
             Designed to last
           </h2> */}
-          <h2
-            id="image-with-text-heading"
-            className=" text-2xl font-bold text-balance text-h2"
-          >
+
+          <h2 className="font-serif text-3xl font-normal tracking-[-0.035em]">
             Designed to last
           </h2>
           <p className="mx-auto mt-5 w-full text-base leading-7 text-neutral-600 md:text-lg">
@@ -50,7 +48,7 @@ export function StoreBenefits() {
         </div>
 
         <div className="max-w-full bg-neutral-10  px-4 py-16 md:px-8 md:py-20">
-          <h2 className="mb-12 text-center text-2xl font-bold tracking-tight md:text-3xl">
+          <h2 className="mb-12 font-serif text-center text-3xl tracking-[-0.035em]">
             Why shop with us
           </h2>
 

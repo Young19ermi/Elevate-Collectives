@@ -57,10 +57,7 @@ export default async function HomePage() {
         {/* <h2 className="mb-8 text-3xl font-black tracking-tight md:text-3xl">
           Featured products
         </h2> */}
-        <h2
-          id="featured-collection-heading"
-          className="mt-8 mb-8 text-balance text-3xl font-bold text-black-600"
-        >
+        <h2 className="font-serif mb-4 text-[32px] font-normal tracking-[-0.035em]">
           Featured products
         </h2>
         <ProductGrid products={products.slice(0, 6)} />

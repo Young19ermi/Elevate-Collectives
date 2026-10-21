@@ -6,6 +6,10 @@ import data from "@/data/products.json";
 import { formatEtb } from "@/lib/utils/format";
 import { useCart } from "@/features/cart/store/cart.store";
 import { useRouter } from "next/navigation";
+import {
+  ORDER_HISTORY_STORAGE_KEY,
+  type StoredOrder,
+} from "@/lib/orders/order-history";
 type CheckoutForm = {
   fullName: string;
   phone: string;
@@ -173,7 +177,6 @@ export default function Page() {
   );
 
   const itemCount = lines.reduce((sum, line) => sum + line.quantity, 0);
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -183,9 +186,12 @@ export default function Page() {
     setNotice("");
 
     try {
+      // 1. Submit the order to your existing API.
       const response = await fetch("/api/orders/confirmation-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           customer: form,
           items: items.map((item) => ({
@@ -196,7 +202,11 @@ export default function Page() {
         }),
       });
 
-      const result = await response.json();
+      const result = (await response.json()) as {
+        success?: boolean;
+        trackingCode?: string;
+        error?: string;
+      };
 
       if (!response.ok || !result.success || !result.trackingCode) {
         throw new Error(
@@ -204,15 +214,96 @@ export default function Page() {
         );
       }
 
+      // 2. Save a snapshot of each purchased product.
+      const historyItems = items.flatMap((item) => {
+        const product = data.find((product) => product.id === item.productId);
+
+        if (!product) return [];
+
+        const imageUrl =
+          Array.isArray(product.images) && typeof product.images[0] === "string"
+            ? product.images[0]
+            : undefined;
+
+        return [
+          {
+            productId: item.productId,
+            productName: product.name,
+            imageUrl,
+            unitPriceEtb: product.priceEtb,
+            quantity: item.quantity,
+            ...(item.size ? { size: item.size } : {}),
+          },
+        ];
+      });
+
+      const subtotalEtb = historyItems.reduce(
+        (total, item) => total + item.unitPriceEtb * item.quantity,
+        0,
+      );
+
+      const createdAt = new Date().toISOString();
+
+      const order: StoredOrder = {
+        trackingCode: result.trackingCode,
+        createdAt,
+        customer: { ...form },
+        items: historyItems,
+        subtotalEtb,
+        orderStatus: "Order Confirmed",
+        paymentStatus: "Payment Awaited",
+      };
+
+      // 3. Add the new order to this browser's transaction history.
+      // Keep previous orders and prevent duplicate tracking codes.
+      try {
+        const rawHistory = localStorage.getItem(ORDER_HISTORY_STORAGE_KEY);
+
+        let previousOrders: StoredOrder[] = [];
+
+        if (rawHistory) {
+          try {
+            const parsed: unknown = JSON.parse(rawHistory);
+
+            if (Array.isArray(parsed)) {
+              previousOrders = parsed as StoredOrder[];
+            }
+          } catch {
+            previousOrders = [];
+          }
+        }
+
+        const updatedHistory = [
+          order,
+          ...previousOrders.filter(
+            (savedOrder) => savedOrder.trackingCode !== order.trackingCode,
+          ),
+        ];
+
+        localStorage.setItem(
+          ORDER_HISTORY_STORAGE_KEY,
+          JSON.stringify(updatedHistory),
+        );
+        window.dispatchEvent(new Event("elevate-transactions-updated"));
+      } catch (storageError) {
+        // The order was already submitted successfully.
+        // Continue to confirmation even if browser storage fails.
+        console.error("Could not save transaction history:", storageError);
+      }
+
+      // 4. Preserve the information used by the confirmation page.
       sessionStorage.setItem(
         "elevate-order-confirmation",
         JSON.stringify({
-          trackingCode: result.trackingCode,
-          customer: form,
-          createdAt: new Date().toISOString(),
+          trackingCode: order.trackingCode,
+          customer: order.customer,
+          createdAt: order.createdAt,
+          items: order.items,
+          subtotalEtb: order.subtotalEtb,
         }),
       );
 
+      // 5. Show the existing order confirmation page.
       router.push("/checkout/confirmation");
     } catch (error) {
       setNotice(
