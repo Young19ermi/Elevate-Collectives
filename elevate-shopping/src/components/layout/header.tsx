@@ -23,13 +23,7 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link
-            href="/transactions"
-            aria-label="Transaction History"
-            className="p-2"
-          >
-            <TransactionBadge />
-          </Link>
+          <TransactionBadge />
           <CartBadge />
           <button
             onClick={() => setOpen(true)}
