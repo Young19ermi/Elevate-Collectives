@@ -174,7 +174,7 @@ Elevate Collectives is built around a simple design direction:
 - [x] Customer accounts and cross-device order access
 - [x] Production-ready payment integration
 - [x] Inventory synchronization and order administration
-- [x] Expanded product categories
+
 
 _The checklist reflects the intended project direction; verify each item against the current implementation before treating it as complete._
 
