@@ -26,13 +26,27 @@ type SavedOrder = {
     instructions: string;
   };
   createdAt: string;
+  items: {
+    productId: string;
+    productName: string;
+    imageUrl?: string;
+    unitPriceEtb: number;
+    quantity: number;
+    size?: string;
+  }[];
+  subtotalEtb: number;
 };
-
 export default function OrderConfirmationPage() {
-  const { items } = useCart();
+  // const { items } = useCart();
   const [order, setOrder] = useState<SavedOrder | null>(null);
   const [mounted, setMounted] = useState(false);
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, []);
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem("elevate-order-confirmation");
@@ -42,22 +56,11 @@ export default function OrderConfirmationPage() {
     }
     setMounted(true);
   }, []);
+  const lines = order?.items ?? [];
 
-  const lines = mounted
-    ? items.flatMap((item) => {
-        const product = data.find((p) => p.id === item.productId);
-        return product
-          ? [{ product, quantity: item.quantity, size: item.size }]
-          : [];
-      })
-    : [];
+  const subtotal = order?.subtotalEtb ?? 0;
 
-  const subtotal = lines.reduce(
-    (sum, line) => sum + line.product.priceEtb * line.quantity,
-    0,
-  );
-
-  const itemCount = lines.reduce((sum, line) => sum + line.quantity, 0);
+  const itemCount = lines.reduce((sum, item) => sum + item.quantity, 0);
 
   if (!mounted) {
     return <main className="min-h-screen animate-pulse bg-[#ffffff]" />;
@@ -65,18 +68,12 @@ export default function OrderConfirmationPage() {
 
   if (!order) {
     return (
-      <main className="flex min-h-[75vh] items-center justify-center bg-[#ffffff] px-6 text-center text-[#211d19]">
-        <div className="max-w-sm">
-          <h1 className="font-serif text-3xl">Order confirmation</h1>
-          <p className="mt-3 text-sm leading-6 text-[#212d19]">
-            We couldn't find a recent checkout in this browser.
+      <main className="flex min-h-screen items-center justify-center bg-white px-6">
+        <div className="text-center">
+          <div className="mx-auto size-8 animate-spin rounded-full border-2 border-[#211d19] border-t-[#ffffff]" />
+          <p className="mt-4 text-sm text-[#211d19]">
+            Loading your order confirmation...
           </p>
-          <Link
-            href="/products"
-            className="mt-6 inline-flex min-h-12 items-center justify-center bg-[#17130f] px-6 text-xs font-semibold uppercase tracking-[0.15em] text-white"
-          >
-            Continue shopping
-          </Link>
         </div>
       </main>
     );
@@ -117,7 +114,7 @@ export default function OrderConfirmationPage() {
           <div className="mx-auto flex size-16 items-center justify-center rounded-full border border-[#d9b979] text-[#b1822e]">
             <img
               src="/logo.png"
-              alt="Your Brand Name"
+              alt="Elevate Shopping"
               width={120}
               height={120}
               className="h-8 w-auto object-contain"
@@ -157,7 +154,7 @@ export default function OrderConfirmationPage() {
         {/* Decorative separator */}
         <div className="my-11 flex items-center gap-4">
           <div className="h-px flex-1 bg-[#ded8cd]" />
-          <span className="font-serif text-[13px] text-[#211d19]">
+          <span className="font-serif text-[15px] text-[#211d19]">
             እናመሰግናለን
           </span>
           <div className="h-px flex-1 bg-[#ded8cd]" />
@@ -175,48 +172,43 @@ export default function OrderConfirmationPage() {
           </div>
 
           <ul className="mt-5 divide-y divide-[#e8e3db] border-y border-[#e8e3db]">
-            {lines.map(({ product, quantity, size }) => (
+            {lines.map((item, index) => (
               <li
-                key={`${product.id}-${size ?? "no-size"}`}
+                key={`${item.productId}-${item.size ?? "no-size"}-${index}`}
                 className="flex gap-3 py-4"
               >
-                <div
-                  className="flex size-[64px] shrink-0 items-center justify-center overflow-hidden"
-                  style={{
-                    backgroundColor: product.colors?.[0]?.hex || "#eee9e0",
-                  }}
-                >
-                  {product.images?.[0] ? (
+                <div className="flex size-[64px] shrink-0 items-center justify-center overflow-hidden bg-[#eee9e0]">
+                  {item.imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={product.images[0]}
-                      alt={product.name}
+                      src={item.imageUrl}
+                      alt={item.productName}
                       className="size-full object-cover"
                     />
                   ) : (
                     <span className="px-1 text-center text-[9px] text-neutral-600">
-                      {product.category}
+                      Product
                     </span>
                   )}
                 </div>
 
                 <div className="min-w-0 flex-1">
                   <h3 className="text-[12px] leading-5 text-[#17130f]">
-                    {product.name}
+                    {item.productName}
                   </h3>
+
                   <p className="text-[11px] leading-5 text-[#746b61]">
-                    {formatEtb(product.priceEtb)} × {quantity}
-                    {size ? ` · Size ${size}` : ""}
+                    {formatEtb(item.unitPriceEtb)} × {item.quantity}
+                    {item.size ? ` · Size ${item.size}` : ""}
                   </p>
                 </div>
 
                 <span className="shrink-0 pt-1 text-[13px] text-[#17130f]">
-                  {formatEtb(product.priceEtb * quantity)}
+                  {formatEtb(item.unitPriceEtb * item.quantity)}
                 </span>
               </li>
             ))}
           </ul>
-
           <div className="mt-5 space-y-4 text-[12px]">
             <div className="flex justify-between gap-3">
               <span className="text-[#746b61]">Subtotal</span>

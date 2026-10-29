@@ -146,13 +146,13 @@ function SectionHeading({
 }
 
 export default function Page() {
-  const { items } = useCart();
+  const { items, clear } = useCart();
   const [mounted, setMounted] = useState(false);
   const [form, setForm] = useState<CheckoutForm>(initialForm);
   const [notice, setNotice] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
-
+  const [redirecting, setRedirecting] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -303,8 +303,12 @@ export default function Page() {
         }),
       );
 
-      // 5. Show the existing order confirmation page.
-      router.push("/checkout/confirmation");
+      // Prevent the empty-cart UI from appearing during navigation.
+      setRedirecting(true);
+
+      // Clear the cart and navigate to confirmation.
+      clear();
+      router.replace("/checkout/confirmation");
     } catch (error) {
       setNotice(
         error instanceof Error
@@ -324,8 +328,19 @@ export default function Page() {
       />
     );
   }
-
-  if (lines.length === 0) {
+  if (redirecting) {
+    return (
+      <main
+        className="flex min-h-screen items-center justify-center bg-[#faf7f1]"
+        aria-label="Loading order confirmation"
+      >
+        <p className="text-sm text-[#746b61]">
+          Preparing your order confirmation...
+        </p>
+      </main>
+    );
+  }
+  if (lines.length === 0 && !redirecting) {
     return (
       <main className="min-h-[75vh] bg-[#faf7f1] px-5 py-20 text-[#211d19]">
         <div className="mx-auto max-w-xl text-center">

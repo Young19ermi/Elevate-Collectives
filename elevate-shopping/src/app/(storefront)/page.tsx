@@ -4,6 +4,7 @@ import { ProductGrid } from "@/features/products/components/product-grid";
 import { CategoryShowcase } from "@/features/category-showcase/category-showcase";
 import { StoreBenefits } from "@/features/StoreBenefits/StoreBenefits";
 import { StoreFooter } from "@/features/store-footer/store-footer";
+import { InstallAppButton } from "@/components/pwa/install-app-button";
 export default async function HomePage() {
   const products = await getProducts();
 
@@ -62,7 +63,7 @@ export default async function HomePage() {
         </h2>
         <ProductGrid products={products.slice(0, 6)} />
       </section>
-
+<InstallAppButton/>
       <CategoryShowcase />
       <StoreBenefits />
       <StoreFooter />

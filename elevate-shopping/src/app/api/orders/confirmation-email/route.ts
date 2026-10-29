@@ -129,7 +129,7 @@ export async function POST(request: Request) {
 
     // UUID makes accidental tracking-code collisions extraordinarily unlikely.
     // Save orders in a database with a unique constraint when persistence is added.
-    const trackingCode = `GW-${randomUUID().toUpperCase()}`;
+    const trackingCode = `GW-${randomUUID().replace(/-/g, "").slice(0, 8).toUpperCase()}`;
 
     const subtotal = lines.reduce(
       (sum, line) => sum + line.product.priceEtb * line.quantity,

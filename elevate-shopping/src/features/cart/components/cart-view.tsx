@@ -52,6 +52,7 @@ function EmptyBag() {
           >
             <path d="m6 6 12 12M18 6 6 18" />
           </svg>
+          {/* <img src="/logo.png" /> */}
         </Link>
       </div>
 

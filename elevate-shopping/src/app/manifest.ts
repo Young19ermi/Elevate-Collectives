@@ -1,26 +1,27 @@
 
-
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "Elevate Shopping",
+    name: "Elevate Collectives",
     short_name: "Elevate",
-    description: "",
+    description:
+      "Discover and shop fashion, perfumes, watches, and accessories from Elevate Collectives.",
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#111827",
+    background_color: "#faf7f1",
+    theme_color: "#17130f",
+    orientation: "portrait",
     icons: [
       {
-        src: "/logo.png",
+        src: "/icons/icon-192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/og.png",
+        src: "/icons/icon-512.png",
         sizes: "512x512",
         type: "image/png",
       },

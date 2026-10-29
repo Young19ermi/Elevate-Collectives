@@ -4,10 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 
-export const metadata: Metadata = {
-  title: { default: "Elevate Shopping", template: "%s | Elevate Shopping" },
-  description: "Shop online in Ethiopia.",
-};
+import { DeviceGate } from "@/components/pwa/device-gate";
 export const viewport: Viewport = {
   themeColor: "#111827",
   width: "device-width",
@@ -23,10 +20,25 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-neutral-50 text-gray-900 antialiased">
         <Header />
-        <main>{children}</main>
+       <DeviceGate>{children}</DeviceGate>
 
         <BottomNav />
       </body>
     </html>
   );
 }
+export const metadata = {
+  // Keep your existing metadata fields.
+  title: "Elevate Collectives",
+  description: "Shop fashion and accessories with Elevate Collectives.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default" as const,
+    title: "Elevate",
+  },
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/icon-192.png",
+  },
+};
