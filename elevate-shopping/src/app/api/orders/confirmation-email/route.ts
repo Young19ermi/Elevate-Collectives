@@ -190,9 +190,9 @@ export async function POST(request: Request) {
     const safeCustomerEmail = escapeHtml(customerEmail);
     const safeCustomerPhone = escapeHtml(customerPhone);
     const storePublicUrl = process.env.STORE_PUBLIC_URL?.replace(/\/+$/, "");
-    const brandImageUrl = storePublicUrl
-      ? `/og.png`
-      : "";
+    // const brandImageUrl = storePublicUrl
+    //   ? `/og.png`
+    //   : "";
   
     // This email is for the store owner, not the customer.
     const html = `
@@ -200,7 +200,6 @@ export async function POST(request: Request) {
         <div style="max-width:560px;margin:0 auto;background:#fffdf9;padding:32px 28px;">
 
           <div style="text-align:center;padding-bottom:24px;border-bottom:1px solid #eee4d5;">
-          ${brandImageUrl}
             <div style="font-family:Georgia,serif;font-size:23px;letter-spacing:1px;color:#6b4b2a;">
               Elevate Collectives
             </div>
