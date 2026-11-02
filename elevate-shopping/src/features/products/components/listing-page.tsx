@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Product } from "../schemas/product.schema";
 import { ProductGrid } from "./product-grid";
 import { SortSelect } from "./sort-select";
-
+import { FilterSort } from "./filter-sort";
 type Props = {
   title: string;
   description?: string;
@@ -38,23 +38,49 @@ export function ListingPage({
           </p>
         )}
       </section>
-      <div className="flex items-center justify-between border-b px-4 py-4">
-        <button className="flex h-11 items-center gap-3 rounded-lg border border-gray-300 bg-white px-4">
+      <div className="flex items-center justify-end border-b px-2 py-2">
+        {/* <button
+          type="button"
+          className="group inline-flex h-11 items-center gap-2.5 rounded-full border border-[#dedbd5] bg-white px-5 text-sm font-medium text-[#211d19] shadow-sm transition-all duration-200 hover:border-[#211d19] hover:bg-[#211d19] hover:text-white active:scale-[0.97]"
+        >
           <svg
             width="18"
             height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.8"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
-            <circle cx="16" cy="7" r="2" />
-            <circle cx="8" cy="17" r="2" />
+            <path d="M4 7h9" />
+            <path d="M17 7h3" />
+            <path d="M4 17h3" />
+            <path d="M11 17h9" />
+            <circle cx="15" cy="7" r="2" />
+            <circle cx="9" cy="17" r="2" />
           </svg>
-          Filters
-        </button>
-        <SortSelect value={sort} />
+
+          <span>Filters</span>
+
+          <span className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#f1eee8] text-[10px] text-[#211d19] transition-colors group-hover:bg-white/20 group-hover:text-white">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </span>
+        </button> */}
+        <div className="flex items-center justify-end border-b px-4 py-4">
+          <FilterSort sort={sort} />
+        </div>
       </div>
       <div className="mx-auto max-w-6xl px-4 py-8">
         {products.length ? (

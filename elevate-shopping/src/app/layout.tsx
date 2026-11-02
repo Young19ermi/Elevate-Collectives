@@ -39,7 +39,7 @@ export default function RootLayout({
         <DeviceGate>
           <Header />
           <main>{children}</main>
-          <Footer />
+          {/* <Footer /> */}
           <BottomNav />
         </DeviceGate>
       </body>
