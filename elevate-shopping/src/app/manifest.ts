@@ -26,12 +26,12 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
       //this one has to be changed 
-      // {
-      //   src: "/icons/icon-192.png",
-      //   sizes: "512x512",
-      //   type: "image/png",
-      //   purpose: "any",
-      // },
+      {
+        src: "/icons/icon-192.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
     ],
   };
 }
