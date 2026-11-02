@@ -20,7 +20,7 @@ export function SplashScreen({ children }: { children: ReactNode }) {
           <img
             src="/icons/icon-192.png"
             alt=""
-            className="h-48 w-48 object-contain"
+            className="h-24 w-24 object-contain"
           />
         </div>
       )}
