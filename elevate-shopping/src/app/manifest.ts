@@ -14,7 +14,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     display_override: ["standalone"],
 
-    background_color: "#ffffff",
+    background_color: "#211d19",
     theme_color: "#17130f",
     orientation: "portrait",
 
@@ -25,6 +25,7 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
         purpose: "any",
       },
+      //this one has to be changed 
       {
         src: "/icons/icon-192.png",
         sizes: "512x512",
