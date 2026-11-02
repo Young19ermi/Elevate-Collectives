@@ -36,14 +36,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-neutral-50 text-gray-900 antialiased">
-        <SplashScreen>
-          <DeviceGate>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-            <BottomNav />
-          </DeviceGate>
-        </SplashScreen>
+        <DeviceGate>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <BottomNav />
+        </DeviceGate>
       </body>
     </html>
   );
