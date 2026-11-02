@@ -8,20 +8,20 @@ import { SplashScreen } from "@/components/pwa/splash-screen";
 import { DeviceGate } from "@/components/pwa/device-gate";
 
 export const viewport: Viewport = {
-  themeColor: "#111827",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#211d19",
 };
-
 export const metadata: Metadata = {
   title: "Elevate Collectives",
   description: "Shop fashion and accessories with Elevate Collectives.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "",
-  },
+  capable: true,
+  statusBarStyle: "default",
+  title: "Elevate",
+},
   icons: {
     icon: "/icons/icon-192.png",
     apple: "/icons/icon-192.png",
