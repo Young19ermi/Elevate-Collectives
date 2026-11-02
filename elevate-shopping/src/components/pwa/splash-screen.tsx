@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
@@ -9,7 +8,7 @@ export function SplashScreen({ children }: { children: ReactNode }) {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setShowSplash(false);
-    }, 2000);
+    }, 1000);
 
     return () => window.clearTimeout(timer);
   }, []);
@@ -17,11 +16,11 @@ export function SplashScreen({ children }: { children: ReactNode }) {
   return (
     <>
       {showSplash && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#211d19] animate-splash-fade">
+        <div className="fixed inset-0 flex items-center justify-center  bg-[#211d19] animate-splash-fade">
           <img
             src="/icons/icon-192.png"
             alt=""
-            className="h-24 w-24 object-contain"
+            className="h-48 w-48 object-contain"
           />
         </div>
       )}

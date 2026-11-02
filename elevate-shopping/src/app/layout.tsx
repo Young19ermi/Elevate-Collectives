@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Elevate",
+    title: "",
   },
   icons: {
     icon: "/icons/icon-192.png",
