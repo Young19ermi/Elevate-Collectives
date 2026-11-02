@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "Elevate Collectives",
+    name: "",
     short_name: "Elevate",
     description:
       "Discover and shop fashion, perfumes, watches, and accessories from Elevate Collectives.",
