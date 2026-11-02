@@ -35,7 +35,7 @@ export const metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default" as const,
-    title: "Elevate",
+    title: "",
   },
   icons: {
     icon: "/icons/icon-192.png",
