@@ -60,7 +60,7 @@ export function InstallPrompt() {
 
   return (
     <div className="fixed inset-x-3 top-[max(12px,env(safe-area-inset-top))] z-[9999] mx-auto max-w-md animate-in slide-in-from-top-4 duration-300">
-      <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#211d19]/65 p-3 shadow-xl shadow-black/10 backdrop-blur-2xl">
+      <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#211d19]/35 p-3 shadow-xl shadow-black/5 backdrop-blur-md">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
           <img
             src="/icons/icon-512.png"
