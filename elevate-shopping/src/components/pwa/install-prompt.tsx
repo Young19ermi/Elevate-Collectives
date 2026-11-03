@@ -63,7 +63,7 @@ export function InstallPrompt() {
       <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#211d19]/90 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
           <img
-            src="/icons/icon-512.png"
+            src="/icons/icon-192.png"
             alt="Elevate"
             className="h-full w-full object-contain"
             onError={(e) => {
