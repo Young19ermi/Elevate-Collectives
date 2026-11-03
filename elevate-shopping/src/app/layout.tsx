@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { SplashScreen } from "@/components/pwa/splash-screen";
 import { DeviceGate } from "@/components/pwa/device-gate";
-
+import { InstallPrompt } from "@/components/pwa/install-prompt";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -41,6 +41,7 @@ export default function RootLayout({
           <main>{children}</main>
           {/* <Footer /> */}
           <BottomNav />
+          <InstallPrompt/>
         </DeviceGate>
       </body>
     </html>
