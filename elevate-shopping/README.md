@@ -1,6 +1,6 @@
 # ELEVATE COLLECTIVES
 
-### Thoughtfully Selected. Designed to Deliver Value
+### Thoughtfully Selected. Designed to Deliver Value.
 
 ## ✦ About the Project
 
